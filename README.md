@@ -12,9 +12,9 @@ The aim of this [project](https://github.com/paulahemsi/get_next_line/blob/main/
 
 ## study || further reading
 
-[gcc's -D flag](https://www.rapidtables.com/code/linux/gcc/gcc-d.html)
-[input-output system call in C](https://www.geeksforgeeks.org/input-output-system-calls-c-create-open-close-read-write/)
-[malloc x calloc](https://cs-fundamentals.com/tech-interview/c/difference-between-malloc-and-calloc#:~:text=The%20malloc()%20takes%20a,obtain%20blocks%20of%20memory%20dynamically.)
+* [gcc's -D flag](https://www.rapidtables.com/code/linux/gcc/gcc-d.html)
+* [input-output system call in C](https://www.geeksforgeeks.org/input-output-system-calls-c-create-open-close-read-write/)
+* [malloc x calloc](https://cs-fundamentals.com/tech-interview/c/difference-between-malloc-and-calloc#:~:text=The%20malloc()%20takes%20a,obtain%20blocks%20of%20memory%20dynamically.)
 
 ## tests
    
