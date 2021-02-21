@@ -3,7 +3,7 @@
 ** which will contain the functions that are needed for your get_next_line to work.
 */
 #include "get_next_line.h"
-
+	
 char	*ft_strchr(const char *s, int c)
 {
 	char	*c_in_s;
@@ -67,37 +67,18 @@ size_t	ft_strlen(const char *s)
 	return (length);
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	ft_strclr(char *s)
 {
-	size_t	*pointer;
-	size_t	total_size;
+	size_t length;
+	size_t i;
 
-	total_size = nmemb * size;
-	if ((total_size) > INT_MAX)
-	{
-		return (NULL);
-	}
-	if (!(pointer = malloc(total_size)))
-	{
-		return (NULL);
-	}
-	ft_memset(pointer, 0, total_size);
-	return ((void *)pointer);
-}
-
-void	*ft_memset(void *s, int c, size_t n)
-{
-	size_t	i;
-	char	cc;
-	char	*pointer_aux;
-
+	if (!s)
+		return ;
+	length = ft_strlen(s);
 	i = 0;
-	cc = (char)c;
-	pointer_aux = (char *)s;
-	while (i < n)
+	while (i < length)
 	{
-		pointer_aux[i] = cc;
+		s[i] = '\0';
 		i++;
 	}
-	return ((void *)s);
 }
