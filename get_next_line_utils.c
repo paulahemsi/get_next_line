@@ -1,9 +1,17 @@
-/*
-** libft is not allowed for this project. You must add a get_next_line_utils.c file
-** which will contain the functions that are needed for your get_next_line to work.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/24 19:30:11 by phemsi-a          #+#    #+#             */
+/*   Updated: 2021/02/24 19:30:30 by phemsi-a         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
-	
+
 char	*ft_strchr(const char *s, int c)
 {
 	char	*c_in_s;
@@ -67,18 +75,42 @@ size_t	ft_strlen(const char *s)
 	return (length);
 }
 
-void	ft_strclr(char *s)
+char	*ft_strdup(const char *s)
 {
-	size_t length;
-	size_t i;
+	char	*string;
+	size_t	length;
+	size_t	i;
 
-	if (!s)
-		return ;
 	length = ft_strlen(s);
+	string = (char *)malloc(length + 1);
+	if (string == NULL)
+		return (NULL);
 	i = 0;
 	while (i < length)
 	{
-		s[i] = '\0';
+		string[i] = s[i];
 		i++;
 	}
+	string[length] = '\0';
+	return (string);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	char	*new_string;
+
+	new_string = (char *)malloc((len + 1) * sizeof(char));
+	if (!s || (new_string == NULL))
+	{
+		return (NULL);
+	}
+	i = 0;
+	while ((i < len) && ((start + i) < ft_strlen(s)) && (s[start + i] != '\0'))
+	{
+		new_string[i] = s[start + i];
+		i++;
+	}
+	new_string[i] = '\0';
+	return (new_string);
 }
