@@ -6,44 +6,32 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 12:17:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/24 19:23:22 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/02/25 18:06:51 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	check_errors(int fd, char **line, t_gnl *string)
+static int	check_errors(int fd, char **line)
 {
-	if ((fd < 1) || !(line))
-		return (1);
-	if (!(string->read = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char))))
+	if ((fd < 0) || !(line) || (BUFFER_SIZE < 1))
 		return (1);
 	return (0);
 }
 
 static void	add_to_line(t_gnl *string, char **line)
 {
-	if (*line == NULL)
-		*line = ft_strdup(string->read);
-	else
-	{
-		string->temp = ft_strjoin(*line, string->read);
-		free(*line);
-		*line = string->temp;
-	}
+	string->temp = ft_strjoin(*line, string->read);
+	free(*line);
+	*line = string->temp;
 }
 
 static char	*new_line_found(t_gnl *string, char **line)
 {
 	*string->break_line_ptr = '\0';
-	if (*line == NULL)
-		*line = ft_strdup(string->read);
-	else
-	{
-		string->temp = ft_strjoin(*line, string->read);
-		free(*line);
-		*line = string->temp;
-	}
+	string->temp = ft_strjoin(*line, string->read);
+	free(*line);
+	*line = string->temp;
 	return (ft_strdup(string->break_line_ptr + 1));
 }
 
@@ -52,7 +40,7 @@ static char	*excess_with_new_line(char **line, t_gnl *string, char *excess)
 	int	length;
 
 	length = 0;
-	while (excess[length] != '\n')
+	while ((excess[length] != '\n'))
 		length++;
 	*line = ft_substr(excess, START, length);
 	string->temp = ft_strdup(string->break_line_ptr + 1);
@@ -64,9 +52,9 @@ int			get_next_line(int fd, char **line)
 	static char		*excess;
 	t_gnl			string;
 
-	*line = NULL;
-	if (check_errors(fd, line, &string))
+	if (check_errors(fd, line))
 		return (-1);
+	*line = ft_strdup("");
 	if (excess != NULL)
 	{
 		if ((string.break_line_ptr = ft_strchr(excess, '\n')))
@@ -79,11 +67,12 @@ int			get_next_line(int fd, char **line)
 	while (((string.read_return = read(fd, string.read, BUFFER_SIZE)) > 0)
 			&& !(string.break_line_ptr = ft_strchr(string.read, '\n')))
 	{
-		string.read[BUFFER_SIZE] = '\0';
+		string.read[string.read_return] = '\0';
 		add_to_line(&string, line);
 	}
 	if (string.read_return < 1)
 		return (string.read_return);
+	string.read[string.read_return] = '\0';
 	excess = new_line_found(&string, line);
 	return (READ_LINE);
 }

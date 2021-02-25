@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:16:44 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/24 19:29:33 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/02/25 18:07:55 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
+# include <sys/param.h>
 
 # define READ_LINE	1
 # define READ_EOF	0
@@ -26,7 +27,7 @@
 
 typedef	struct	s_get_next_line
 {
-	char		*read;
+	char		read[BUFFER_SIZE + 1];
 	char		*temp;
 	char		*break_line_ptr;
 	int			read_return;

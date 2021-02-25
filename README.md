@@ -18,8 +18,9 @@ The aim of this [project](https://github.com/paulahemsi/get_next_line/blob/main/
 
 ## tests
    
-* [GNL_lover](https://github.com/charMstr/GNL_lover)
-* [gnl_tester](https://github.com/lgrellie/gnl_tester)
+* [GNL_lover](https://github.com/charMstr/GNL_lover) nop
+* [gnl_tester](https://github.com/lgrellie/gnl_tester) nop
 * [42cursus_gnl_test](https://github.com/mrjvs/42cursus_gnl_tests)
-* [42TESTERS-GNL](https://github.com/Mazoise/42TESTERS-GNL)
+* [42TESTERS-GNL](https://github.com/Mazoise/42TESTERS-GNL) nop
 * [Get_Next_Line_Tester](https://github.com/Hellio404/Get_Next_Line_Tester)
+* [gnl_basic_tester](https://github.com/xibaochat/gnl_basic_tester)
