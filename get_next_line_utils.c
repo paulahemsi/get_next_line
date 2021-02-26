@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:30:11 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/25 18:07:27 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/02/26 15:38:46 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,22 +95,19 @@ char	*ft_strdup(const char *s)
 	return (string);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	*ft_memset(void *s, int c, size_t n)
 {
 	size_t	i;
-	char	*new_string;
+	char	cc;
+	char	*pointer_aux;
 
-	new_string = (char *)malloc((len + 1) * sizeof(char));
-	if (!s || (new_string == NULL))
-	{
-		return (NULL);
-	}
 	i = 0;
-	while ((i < len) && ((start + i) < ft_strlen(s)) && (s[start + i] != '\0'))
+	cc = (char)c;
+	pointer_aux = (char *)s;
+	while (i < n)
 	{
-		new_string[i] = s[start + i];
+		pointer_aux[i] = cc;
 		i++;
 	}
-	new_string[i] = '\0';
-	return (new_string);
+	return ((void *)s);
 }
