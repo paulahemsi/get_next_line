@@ -1,8 +1,6 @@
 # get_next_line
 
 * [Introduction](#introduction)
-* [Bonus](#bonus)
-* [Extras](#extras)
 * [Study resources](#study)
 * [Testing](#tests) 
 
