@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 12:17:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/26 15:39:05 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/02/26 14:56:16 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	check_errors(int fd, char **line, t_gnl *string)
 {
 	ft_memset(string, 0, sizeof(*string));
-	if ((fd < 0) || (fd > OPEN_MAX) || (BUFFER_SIZE < 1) || !(line))
+	if ((fd < 0) || (fd > RLIMIT_NOFILE) || (BUFFER_SIZE < 1) || !(line))
 		return (1);
 	return (0);
 }
