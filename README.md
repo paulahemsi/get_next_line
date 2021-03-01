@@ -14,6 +14,7 @@ The aim of this [project](https://github.com/paulahemsi/get_next_line/blob/main/
 * [input-output system call in C](https://www.geeksforgeeks.org/input-output-system-calls-c-create-open-close-read-write/)
 * [malloc x calloc](https://cs-fundamentals.com/tech-interview/c/difference-between-malloc-and-calloc#:~:text=The%20malloc()%20takes%20a,obtain%20blocks%20of%20memory%20dynamically.)
 * [valgrind flags](https://www.cprogramming.com/debugging/valgrind.html)
+* [RLIMIT_NOFILE](https://www.gnu.org/software/libc/manual/html_node/Limits-on-Resources.html)
 
 ## tests
    

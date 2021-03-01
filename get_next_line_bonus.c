@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 12:17:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/26 14:56:16 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/01 00:02:58 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int	check_errors(int fd, char **line, t_gnl *string)
 {
@@ -20,36 +20,47 @@ static int	check_errors(int fd, char **line, t_gnl *string)
 	return (0);
 }
 
-static void	add_to_line(t_gnl *string, char **line)
+static int	add_to_line(t_gnl *string, char **line, char **excess, int new_line)
 {
+	if (new_line)
+		*string->break_line_ptr = '\0';
 	string->read[string->read_return] = '\0';
 	string->temp = ft_strjoin(*line, string->read);
+	if (string->temp == NULL)
+		return (ERROR);
 	free(*line);
 	*line = string->temp;
-}
-
-static int	new_line_found(t_gnl *string, char **line, char **excess)
-{
-	string->read[string->read_return] = '\0';
-	*string->break_line_ptr = '\0';
-	string->temp = ft_strjoin(*line, string->read);
-	free(*line);
-	*line = string->temp;
-	string->temp = ft_strdup(string->break_line_ptr + 1);
-	free(*excess);
-	*excess = string->temp;
+	if (new_line)
+	{
+		string->temp = ft_strdup(string->break_line_ptr + 1);
+		if (string->temp == NULL)
+			return (ERROR);
+		free(*excess);
+		*excess = string->temp;
+	}
 	return (READ_LINE);
 }
 
-static int	excess_with_new_line(char **line, t_gnl *string, char **excess)
+static int	add_excess(char **line, t_gnl *string, char **excess, int new_line)
 {
-	*string->break_line_ptr = '\0';
+	if (new_line)
+		*string->break_line_ptr = '\0';
 	string->temp = ft_strjoin(*line, *excess);
+	if (string->temp == NULL)
+		return (ERROR);
 	free(*line);
 	*line = string->temp;
-	string->temp = ft_strdup(string->break_line_ptr + 1);
+	if (new_line)
+	{
+		string->temp = ft_strdup(string->break_line_ptr + 1);
+		if (string->temp == NULL)
+			return (ERROR);
+	}
 	free(*excess);
-	*excess = string->temp;
+	if (new_line)
+		*excess = string->temp;
+	else
+		*excess = NULL;
 	return (READ_LINE);
 }
 
@@ -58,26 +69,23 @@ int			get_next_line(int fd, char **line)
 	static char		*excess[OPEN_MAX];
 	t_gnl			string;
 
-	if (check_errors(fd, line, &string))
+	if ((check_errors(fd, line, &string)) || (*line = ft_strdup("")) == NULL)
 		return (-1);
-	*line = ft_strdup("");
-	if (excess[fd] != NULL)
+	if (excess != NULL)
 	{
 		if ((string.break_line_ptr = ft_strchr(excess[fd], '\n')))
-			return (excess_with_new_line(line, &string, &excess[fd]));
-		string.temp = ft_strjoin(*line, excess[fd]);
-		free(*line);
-		free(excess[fd]);
-		excess[fd] = NULL;
-		*line = string.temp;
+			return (add_excess(line, &string, &excess[fd], NEW_LINE));
+		if ((add_excess(line, &string, &excess, NO_NEW_LINE)) == ERROR)
+			return (ERROR);
 	}
 	while (((string.read_return = read(fd, string.read, BUFFER_SIZE)) > 0)
 			&& !(string.break_line_ptr = ft_strchr(string.read, '\n')))
-		add_to_line(&string, line);
+		if (add_to_line(&string, line, &excess[fd], NO_NEW_LINE) == ERROR)
+			return (ERROR);
 	if (string.read_return < 1)
 	{
 		free(excess[fd]);
 		return (string.read_return);
 	}
-	return (new_line_found(&string, line, &excess[fd]));
+	return (add_to_line(&string, line, &excess[fd], NEW_LINE));
 }

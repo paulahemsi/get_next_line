@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:16:44 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/02/26 15:39:29 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/02/28 23:43:11 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <sys/param.h>
+# include <sys/resource.h>
 
-# define READ_LINE	1
+# define READ_LINE		1
+# define ERROR			-1
+# define NEW_LINE		1
+# define NO_NEW_LINE	0
 
 typedef	struct	s_get_next_line
 {
