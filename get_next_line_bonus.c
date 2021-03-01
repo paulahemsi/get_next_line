@@ -6,7 +6,7 @@
 /*   By: phemsi-a <phemsi-a@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 12:17:28 by phemsi-a          #+#    #+#             */
-/*   Updated: 2021/03/01 00:22:38 by phemsi-a         ###   ########.fr       */
+/*   Updated: 2021/03/01 00:27:12 by phemsi-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int			get_next_line(int fd, char **line)
 	{
 		if ((string.break_line_ptr = ft_strchr(excess[fd], '\n')))
 			return (add_excess(line, &string, &excess[fd], NEW_LINE));
-		if ((add_excess(line, &string, &excess, NO_NEW_LINE)) == ERROR)
+		if ((add_excess(line, &string, &excess[fd], NO_NEW_LINE)) == ERROR)
 			return (ERROR);
 	}
 	while (((string.read_return = read(fd, string.read, BUFFER_SIZE)) > 0)
