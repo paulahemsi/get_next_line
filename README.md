@@ -2,6 +2,7 @@
 
 * [Introduction](#introduction)
 * [Study resources](#study)
+* [Mindmap](#mindmap) 
 * [Testing](#tests) 
 
 ## introduction  
@@ -16,6 +17,11 @@ The aim of this [project](https://github.com/paulahemsi/get_next_line/blob/main/
 * [valgrind flags](https://www.cprogramming.com/debugging/valgrind.html)
 * [RLIMIT_NOFILE](https://www.gnu.org/software/libc/manual/html_node/Limits-on-Resources.html)
 
+## mindmap
+
+![](get_next_line.jpg)
+
+
 ## tests
    
 * [GNL_lover](https://github.com/charMstr/GNL_lover)
@@ -27,4 +33,3 @@ The aim of this [project](https://github.com/paulahemsi/get_next_line/blob/main/
 * [gnl_tester](https://github.com/lgrellie/gnl_tester)
 * [gnl_unit_tests](https://github.com/saarikoski-jules/gnl_unit_tests.git)
 
-![](get_next_line.jpg)
